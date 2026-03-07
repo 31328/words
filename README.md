@@ -1,128 +1,67 @@
-# Spoken Numbers
-
-# Spoken Numbers Generator
-
-A Spring Boot REST service that generates binary numbers or random numeric sequences and can export them into an Excel sheet.
+# Words Generator API
 
 ## Overview
 
-The application exposes HTTP endpoints that allow clients to:
+Words Generator is a Spring Boot REST API that generates random sequences of letters from multiple alphabets and languages.  
+The service can produce randomized character strings using Latin, Greek, and Cyrillic alphabets commonly used across different countries.
 
-- Generate binary numbers with a specified number of digits
-- Generate random numeric sequences with a specified number of digits
-- Export generated numbers into an Excel spreadsheet
-
-The service is designed as a simple backend utility that demonstrates REST API design, service abstraction, and file generation using Apache POI.
+The API is designed as a simple backend service demonstrating REST architecture, service-layer abstraction, and random data generation.
 
 ## Technology Stack
 
 - Java
 - Spring Boot
 - Spring Web
-- Apache POI
 - Maven
 
-## Application Structure
+## Project Structure
 
-The project follows a layered architecture:
-
-- **Controller layer** – Handles HTTP requests and responses
-- **Service layer** – Contains the business logic for number generation
-- **Application entry point** – Bootstraps the Spring Boot application
-
-## API Endpoints
-
-### Generate Binary Numbers
-
-Generates binary numbers with a specific number of digits.
-
-GET /api/generatenumbers/binarydigits/{digits}/{count}
+The application follows a layered architecture.
 
 
-Parameters:
-
-- `digits` – number of digits in each binary number
-- `count` – number of binary numbers to generate
-
-Example:
-
-
-GET /api/generatenumbers/binarydigits/8/10
-
-
-Response:
+com.words.spring
+├── WordsApp # Spring Boot entry point
+├── controllers
+│ └── LetterController # REST API endpoints
+├── services
+│ └── LetterService # Service interface
+└── services.impl
+└── LetterServiceImpl # Business logic implementation
 
 
-[
-"01011010",
-"11100001",
-"00110101"
-]
+## Features
 
+- Random letter generation
+- Support for multiple alphabets
+- RESTful API endpoints
+- Stateless service design
+- Simple extensible architecture for adding new languages
 
----
+## Supported Languages / Alphabets
 
-## Generate Random Numbers
+The service currently supports random letter generation for:
 
-Generates random numeric sequences.
-
-
-GET /api/generatenumbers/randomnumbers/{digits}/{count}
-
-
-Parameters:
-
-- `digits` – number of digits in each number
-- `count` – number of sequences to generate
-
-Example:
-
-
-GET /api/generatenumbers/randomnumbers/6/5
-
-
-Response:
-
-
-[
-"482901",
-"105772",
-"938204"
-]
-
-
----
-
-## Generate Excel Sheet
-
-Creates an Excel file containing the provided binary numbers.
-
-
-POST /api/generatenumbers/generatebinarysheet
-
-
-Request body:
-
-
-[
-"101010",
-"111000",
-"010101"
-]
-
-
-Response:
-
-- Returns a downloadable Excel file (`binarysheet.xlsx`)
-- Each digit is stored in a separate cell
+- Greek
+- English
+- German
+- Italian
+- Swedish
+- Albanian
+- Mongolian
+- Polish
+- French
+- Spanish
+- Bulgarian
+- Serbian (Cyrillic)
+- Serbian (Latin)
+- Russian
 
 ## Running the Application
 
-Build the project:
+Requirements:
 
-
-mvn clean install
-
+- Java 17 or newer
+- Maven
 
 Run the application:
 
@@ -130,19 +69,130 @@ Run the application:
 mvn spring-boot:run
 
 
-The service will start on:
+Default server:
 
 
 http://localhost:8080
 
 
-## Example Workflow
+## API Endpoints
 
-1. Generate binary numbers using the API.
-2. Send the generated numbers to the Excel generation endpoint.
-3. Download the generated spreadsheet.
+Base path:
 
-## Notes
 
-- Input validation ensures non-positive digit or count values return empty results.
-- Excel generation uses Apache POI with automatic resource management via try-with-resources.
+/api/letters
+
+
+Generate random letters using a specified alphabet and count.
+
+### Greek
+
+
+GET /api/letters/generaterandommg/{count}
+
+
+Example:
+
+
+http://localhost:8080/api/letters/generaterandommg/10
+
+
+### English
+
+
+GET /api/letters/generaterandomen/{count}
+
+
+### German
+
+
+GET /api/letters/generaterandomger/{count}
+
+
+### Italian
+
+
+GET /api/letters/generaterandomit/{count}
+
+
+### Swedish
+
+
+GET /api/letters/generaterandomsw/{count}
+
+
+### Albanian
+
+
+GET /api/letters/generaterandomal/{count}
+
+
+### Mongolian
+
+
+GET /api/letters/generaterandommon/{count}
+
+
+### Polish
+
+
+GET /api/letters/generaterandompol/{count}
+
+
+### French
+
+
+GET /api/letters/generaterandomfr/{count}
+
+
+### Spanish
+
+
+GET /api/letters/generaterandomsp/{count}
+
+
+### Bulgarian
+
+
+GET /api/letters/generaterandombg/{count}
+
+
+### Serbian Cyrillic
+
+
+GET /api/letters/generaterandomsercy/{count}
+
+
+### Serbian Latin
+
+
+GET /api/letters/generaterandomserlat/{count}
+
+
+### Russian
+
+
+GET /api/letters/generaterandomru/{count}
+
+
+## Example Response
+
+
+ΔβΩφΑήπΣγτ
+
+
+The response is a string containing randomly selected characters from the requested alphabet.
+
+## Future Improvements
+
+- Input validation
+- Rate limiting
+- Database storage of generated sequences
+- Swagger/OpenAPI documentation
+- Unit and integration tests
+- Configurable alphabets
+- CSV or Excel export functionality
+
+## License
+
+This project is open source and available for educational and development purposes.
