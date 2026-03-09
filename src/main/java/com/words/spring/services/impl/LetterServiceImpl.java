@@ -9,10 +9,12 @@ import java.util.Random;
 @Service
 public class LetterServiceImpl implements LetterService {
     private Random random = new Random();
-    private char[] greekLetters = {'Α', 'Ά', 'α', 'ά', 'Β', 'β', 'Γ', 'γ', 'Δ', 'δ', 'Ε', 'Έ', 'ε', 'έ', 'Ζ', 'ζ', 'Η', 'Ή', 'η', 'ή', 'Θ', 'θ', 'Ι', 'Ί', 'Ϊ', 'ι', 'ί', 'ϊ', 'ΐ', 'Κ', 'κ', 'Λ', 'λ', 'Μ', 'μ', 'Ν', 'ν', 'Ξ', 'ξ', 'Ο', 'Ό', 'ο', 'ό', 'Π', 'π', 'Ρ', 'ρ', 'Σ', 'σ', 'ς', 'Τ', 'τ', 'Υ', 'Ύ', 'Ϋ', 'υ', 'ύ', 'ϋ', 'ΰ', 'Φ', 'φ', 'Χ', 'χ', 'Ψ', 'ψ', 'Ω', 'Ώ', 'ω', 'ώ'};
 
     @Override
-    public String generateRandomGreekLetters(int count) {
+    public String generateRandomModernGreekLetters(int count) {
+        char[] greekLetters = {'Α', 'Ά', 'α', 'ά', 'Β', 'β', 'Γ','γ', 'Δ', 'δ', 'Ε', 'Έ', 'ε', 'έ', 'Ζ', 'ζ', 'Η', 'Ή', 'η', 'ή', 'Θ', 'θ', 'Ι', 'Ί', 'Ϊ', 'ι',
+                'ί', 'ϊ', 'ΐ', 'Κ', 'κ', 'Λ', 'λ', 'Μ', 'μ', 'Ν','ν', 'Ξ', 'ξ', 'Ο', 'Ό', 'ο', 'ό', 'Π', 'π', 'Ρ', 'ρ', 'Σ', 'σ', 'ς', 'Τ', 'τ', 'Υ', 'Ύ', 'Ϋ',
+                'υ', 'ύ', 'ϋ', 'ΰ', 'Φ', 'φ', 'Χ', 'χ', 'Ψ', 'ψ','Ω', 'Ώ', 'ω', 'ώ'};
         StringBuffer stringBuffer = new StringBuffer();
         int i = 0;
         while (i < count) {
@@ -21,6 +23,21 @@ public class LetterServiceImpl implements LetterService {
             i++;
         }
         return stringBuffer.toString();
+    }
+
+    @Override
+    public String generateRandomPolytonicGreekLetters(int count) {
+        char[] polytonicGreekLetters = {'Α', 'Ά', 'α', 'ά', 'Β', 'β', 'Γ','γ', 'Δ', 'δ', 'Ε', 'Έ', 'ε', 'έ', 'Ζ', 'ζ', 'Η', 'Ή', 'η', 'ή', 'Θ', 'θ', 'Ι', 'Ί',
+                'Ϊ', 'ι', 'ί', 'ϊ', 'ΐ', 'Κ', 'κ', 'Λ', 'λ', 'Μ', 'μ', 'Ν','ν', 'Ξ', 'ξ', 'Ο', 'Ό', 'ο', 'ό', 'Π', 'π', 'Ρ', 'ρ', 'Σ', 'σ', 'ς', 'Τ', 'τ', 'Υ',
+                'Ύ', 'Ϋ', 'υ', 'ύ', 'ϋ', 'ΰ', 'Φ', 'φ', 'Χ', 'χ', 'Ψ', 'ψ','Ω', 'Ώ', 'ω', 'ώ', 'ϒ','ᾼ'};
+        StringBuffer stringBuffer = new StringBuffer();
+        int i = 0;
+        while (i < count){
+            char randomLetter = polytonicGreekLetters[random.nextInt(polytonicGreekLetters.length)];
+            stringBuffer.append(randomLetter);
+            i++;
+        }
+        return  stringBuffer.toString();
     }
 
     @Override

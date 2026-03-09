@@ -1,7 +1,8 @@
 package com.words.spring.services;
 
 public interface LetterService {
-    String generateRandomGreekLetters(int count);
+    String generateRandomModernGreekLetters(int count);
+    String generateRandomPolytonicGreekLetters(int count);
     String generateRandomEnglishLetters(int count);
     String generateRandomGermanLetters(int count);
     String generateRandomItalianLetters(int count);

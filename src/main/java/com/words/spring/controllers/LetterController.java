@@ -18,9 +18,14 @@ public class LetterController {
         this.letterService = letterService;
     }
 
-    @GetMapping("/generaterandommg/{count}")
+    @GetMapping("/generaterandomgr/{count}")
     public ResponseEntity<String> generateRandomGreekLetters(@PathVariable("count") int count) {
-        return new ResponseEntity<>(letterService.generateRandomGreekLetters(count), HttpStatus.OK); // change status to CREATED once you have DB!!!!!!
+        return new ResponseEntity<>(letterService.generateRandomModernGreekLetters(count), HttpStatus.OK); // change status to CREATED once you have DB!!!!!!
+    }
+
+    @GetMapping("/generaterandomgrpl/{count}")
+    public ResponseEntity<String> generateRandomPolytonicGreekLetters(@PathVariable("count") int count) {
+        return new ResponseEntity<>(letterService.generateRandomPolytonicGreekLetters(count), HttpStatus.OK);
     }
 
     @GetMapping("/generaterandomen/{count}")
